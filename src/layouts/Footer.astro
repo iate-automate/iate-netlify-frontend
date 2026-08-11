@@ -1,6 +1,4 @@
 ---
-import { version } from '../../package.json';
-
 const {landing} = Astro.props
 const year = new Date().getFullYear();
 ---
@@ -8,9 +6,6 @@ const year = new Date().getFullYear();
 <footer class={landing ? "footer-landing" : ""}>
     <div class="copyright">
         <div>&copy; {year} Artspsychotherapy.</div>
-    </div>
-    <div class="credits">
-        <div>v{version} — Built by <a class="footer-link" href="https://minnow.tech" target="_blank">Minnow</a>.</div>
     </div>
 </footer>
 
