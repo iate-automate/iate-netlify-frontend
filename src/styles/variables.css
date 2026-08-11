@@ -1,0 +1,54 @@
+/* -------------------------- Variables */
+
+@font-face {
+    font-family: 'Neue Montreal';
+    src: url('../styles/fonts/neue-montreal-regular.woff2') format('woff2'),
+        url('../styles/fonts/neue-montreal-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Montreal';
+    font-weight: bold;
+    src: url('../styles/fonts/neue-montreal-bold.woff2') format('woff2'),
+        url('../styles/fonts/neue-montreal-bold.woff') format('woff');
+}
+
+:root {
+
+    --site-content-width: 1200px;
+    --site-gutter-inline: min(6vw, 40px);
+    --site-gutter-block: min(6vw, 40px);
+
+    --margin-site: 2rem;
+    --margin-x-large: 6rem;
+    --margin-large: 3rem;
+    --margin-medium: 2rem;
+    --margin-small: 1rem;
+    --margin-x-small: 0.5rem;
+    --margin-xx-small: 0.25rem;
+
+    --color-white: #EEEDED;
+    --color-black: #191919;
+    --color-red: #eb5777;
+    --color-blue: #096fb7;
+    --color-purple: #3a3d66;
+
+    --color-fg: var(--color-purple);
+    --color-bg: var(--color-white);
+
+    --font-family: 'Open Sans', Helvetica, Arial, Sans-Serif;
+    --font-size: 16px;
+    --font-size-mobile: 14px;
+    --font-size-small: 0.8rem;
+    --line-height: 1.8rem;
+    --letter-spacing: -0.01em;
+
+    --copy-width: 600px;
+
+    --border: 1px solid;
+    --keyline: 2px;
+    --radius: 3px;
+    --knockout: 0.2;
+    --knockback: 0.4;
+
+}

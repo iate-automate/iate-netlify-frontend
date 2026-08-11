@@ -1,0 +1,43 @@
+---
+import { version } from '../../package.json';
+
+const {landing} = Astro.props
+const year = new Date().getFullYear();
+---
+
+<footer class={landing ? "footer-landing" : ""}>
+    <div class="copyright">
+        <div>&copy; {year} Artspsychotherapy.</div>
+    </div>
+    <div class="credits">
+        <div>v{version} — Built by <a class="footer-link" href="https://minnow.tech" target="_blank">Minnow</a>.</div>
+    </div>
+</footer>
+
+
+<style>
+
+    footer {
+        font-size: 0.8em;
+        display: grid;
+        grid-template-columns: auto max-content;
+        gap: 0 var(--margin-medium);
+        padding: var(--site-gutter-block) var(--site-gutter-inline);
+    }
+
+    .footer-landing {
+        background-color: var(--color-purple);
+        color: var(--color-white);
+    }
+
+    .footer-landing .footer-link {
+        color: var(--color-white);
+    }
+
+    @media only screen and (min-width: 769px) {
+        footer {
+            font-size: 0.9em;
+        }
+    }
+
+</style>

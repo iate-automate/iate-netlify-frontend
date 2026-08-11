@@ -1,0 +1,270 @@
+/* --------------------- Imports */
+
+@import url('variables.css');
+@import url('reset.css');
+
+
+/* --------------------- Layout */
+
+html {
+    font-size: var(--font-size-mobile);
+}
+
+@media only screen and (min-width: 768px) {
+    html {
+        font-size: var(--font-size);
+    }
+}
+
+body {
+    display: grid;
+    grid-template-rows: max-content auto max-content;
+    gap: var(--margin-x-large);
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+}
+
+main {
+    display: grid;
+    gap: var(--margin-large);
+    width: 100%;
+    max-width: var(--site-content-width);
+    margin: auto;
+    padding-inline: var(--site-gutter-inline);
+    height: 100%;
+}
+
+section {
+    display: grid;
+    margin-bottom: auto;
+}
+
+.block {
+    max-width: var(--copy-width);
+}
+
+
+/* --------------------- Typography */
+
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.03em;
+}
+
+h1, .h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    font-weight: bold;
+    margin-bottom: 1.2em;
+}
+
+h2, .h2 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    font-weight: bold;
+    margin-bottom: 1.2em;
+}
+
+.h3, h3,
+.select-session label
+ {
+    font-size: 1.3rem;
+    line-height: 1.2;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.subtitle {
+    font-size: 0.8em;
+    font-weight: normal;
+}
+
+p {
+    line-height: var(--line-height);
+    margin-bottom: var(--margin-small);
+}
+
+a, a:visited, a:active {
+    color: var(--color-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-red);
+}
+
+.columns {
+    column-count: 2;
+}
+
+
+/* --------------------- Forms & Buttons */
+
+form {
+    display: grid;
+    gap: var(--margin-small);
+    max-width: var(--copy-width);
+}
+
+.form__submit {
+  margin-top: var(--margin-small);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--margin-x-small);
+    font-size: var(--font-size-small);
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: var(--margin-x-small);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    border: var(--border) var(--color-fg);
+    border-radius: var(--radius);
+    color: var(--color-fg);
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    padding: var(--margin-x-small) var(--margin-small);
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--color-red);
+    color: var(--color-bg);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: var(--color-bg);
+}
+
+.btn-large {
+    padding: var(--margin-small) var(--margin-medium);
+    font-size: 1.6rem;
+}
+
+.feedback {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--color-blue);
+}
+
+.feedback__error {
+    color: var(--color-red);
+}
+
+.feedback__success {
+    color: var(--color-blue);
+}
+
+/* Marketing Opt in */
+
+.marketing-opt-in label {
+    padding-left: var(--margin-x-small);
+    display: inline;
+}
+
+
+/* -------------------- Register */
+
+.register {
+    margin: auto;
+    /* padding: 2rem; */
+    max-width: var(--site-content-width);
+}
+
+.register h1,
+.register p {
+    text-align: center;
+}
+
+.course-day {
+    text-align: center;
+}
+
+.register-form {
+    display: grid;
+    margin-inline: auto;
+    gap: var(--margin-large);
+    min-height: 30vh;
+}
+
+.selections {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: auto;
+    gap: var(--margin-medium);
+}
+
+.select-day,
+.select-session {
+    margin: auto;
+}
+
+.select-session label {
+    display: block;
+    margin-bottom: var(--margin-x-small);
+}
+
+select {
+    width: 100%;
+    padding: var(--margin-x-small);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    border: var(--border) var(--color-fg);
+    border-radius: var(--radius);
+    color: var(--color-fg);
+}
+
+.select-students {
+    display: grid;
+    gap: var(--margin-small);
+}
+
+.student-checkboxes-header {
+    text-align: center;
+    border-bottom: var(--keyline) solid var(--color-fg);
+    padding-bottom: var(--margin-medium);
+    margin-bottom: var(--margin-small);
+}
+
+.student-checkboxes {
+    display: grid;
+    gap: var(--margin-x-small);
+    margin-inline: auto;
+    margin-block: var(--margin-small);
+}
+
+.student-checkbox {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    gap: var(--margin-small);
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+.absent {
+    color: var(--color-red);
+}
+
+.register-submission p {
+    text-align: center;
+    color: var(--color-blue);
+    font-size: 1.6rem;
+}
+
+.already-submitted {
+    display: grid;
+    gap: var(--margin-small);
+    color: var(--color-red);
+    margin-top: var(--margin-medium);
+}

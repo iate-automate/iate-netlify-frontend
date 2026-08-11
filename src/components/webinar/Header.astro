@@ -1,0 +1,39 @@
+---
+import { markdownToHtml } from "../../hooks/utils"
+
+const { webinar, isLive } = Astro.props
+const title = webinar && isLive ? webinar["Title"] : "Offline"
+const headline = webinar && isLive ? webinar["Headline"] : "This webinar is currently offline."
+const description = webinar && isLive ? webinar["Description"] : "This webinar is currently offline. Please check back later or get in touch if you think there is an issue."
+---
+
+<section class="landing-header">
+
+    <!-- Title -->
+    <div class="title block">
+        <div class="preheader">{title}</div>
+        <h1 class="title">{headline}</h1>
+    </div>
+    
+    <!-- Copy -->
+    <div class="description block" set:html={markdownToHtml(description)}></div>
+
+</section>
+
+<style>
+
+    .preheader {
+        /* opacity: var(--knockback); */
+        border-bottom: var(--border);
+        padding-bottom: var(--margin-x-small);
+        margin-bottom: var(--margin-small);
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .description {
+        font-size: 1.4em;    }
+
+</style>

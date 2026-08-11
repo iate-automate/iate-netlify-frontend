@@ -1,0 +1,32 @@
+---
+const { name, address, phone, email } = Astro.props;
+---
+
+<div class="student">
+    <div>Name</div><div>{name}</div>
+    <div>Address</div><div>{address}</div>
+    <div>Phone</div><div>{phone}</div>
+    <div>Email</div><div>{email}</div>
+</div>
+
+<style>
+
+    .student {
+        display: grid;
+        grid-template-columns: max-content auto;
+        gap: 0 var(--margin-large);
+        padding-bottom: var(--margin-large);
+        position: relative;
+    }
+
+    .student::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        border-bottom: var(--border);
+        opacity: var(--knockout);
+    }
+
+</style>

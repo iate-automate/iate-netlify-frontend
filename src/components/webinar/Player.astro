@@ -1,0 +1,115 @@
+---
+const { webinar } = Astro.props
+const id = webinar["Record ID"]
+const title = webinar["Title"][0]
+const desc = webinar["Description"][0]
+const videoUrl = webinar["Video URL"]
+const days = webinar["Days Remaining"]
+const units = (days === 1) ? "day" : "days"
+const watched = webinar["Watched"] * 100
+const plays = webinar["Plays"]
+---
+
+<div class="title">
+    <div class="preheader">Webinar</div>
+    <h1>{title}</h1>
+</div>
+<div class="video">
+    <video
+        id="video"
+        data-webinar={id}
+        data-watched={watched}
+        data-plays={plays}
+        width="1280"
+        height="720"
+        muted
+        controls
+    >
+        <source src={videoUrl} type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+</div>
+<div class="details">
+    <div class="desc" set:html={desc} />
+    <div class="meta">
+        <div class="meta-item">
+            <div>Webinar Access Remaining</div>
+            <div>{days} {units}</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const video = document.getElementById('video') as HTMLVideoElement;
+    let reportedPercentage = -1;
+    if (parseInt(video.dataset.watched) > 0) {
+       reportedPercentage = parseInt(video.dataset.watched);
+    }
+
+    // Report stats
+    video.removeEventListener('timeupdate', reportStats);
+    video.addEventListener('timeupdate', reportStats);
+
+    function reportStats() {
+        const percentageWatched = Math.floor((video.currentTime / video.duration) * 100);
+
+        if (percentageWatched % 20 === 0 && reportedPercentage - 1 < percentageWatched && reportedPercentage !== percentageWatched) {
+            reportedPercentage = percentageWatched;
+
+            const payload = {
+                id: video.dataset.webinar,
+                accessed: new Date().toISOString(),
+                watched: percentageWatched / 100,
+                plays: parseInt(video.dataset.plays),
+            };
+
+            fetch('https://api-62jcrbgdlq-uc.a.run.app/webinar-stats', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            })
+            .then(response => response.json())
+            .then(data => console.log('Stats reported:', data))
+            .catch(error => console.error('Error reporting stats:', error));
+        }
+    }
+</script>
+
+
+<style>
+
+    .preheader {
+        border-bottom: var(--border);
+        padding-bottom: var(--margin-x-small);
+        margin-bottom: var(--margin-small);
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    .details {
+        display: grid;
+        gap: var(--margin-small);
+    }
+
+    @media only screen and (min-width: 769px) {
+        .desc {
+            column-count: 2;
+            column-gap: var(--margin-medium);
+        }
+    }
+
+    .meta {
+        display: grid;
+        gap: var(--margin-x-small);
+        font-size: var(--font-size-small);
+    }
+
+    .meta-item {
+        display: grid;
+        grid-template-columns: max-content auto;
+        gap: var(--margin-medium);
+    }
+
+</style>

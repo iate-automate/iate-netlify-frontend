@@ -1,0 +1,24 @@
+---
+import Master from "../../../layouts/Master.astro"
+import Header from "../../../components/webinar/Header.astro"
+import Form from "../../../components/webinar/Form"
+import NoAccess from "../../../components/webinar/NoAccess.astro"
+import { fetchWebinar } from "../../../hooks/api"
+
+const { slug } = Astro.params
+const source = Astro.url.searchParams.get('source')
+const webinar = await fetchWebinar(slug)
+const isLive = webinar ? webinar["Live"] : false
+const title = webinar && isLive ? webinar["Headline"] : "Webinar Offline"
+const headerImg = webinar ? webinar["Image URL"] : "/images/iate-header-bg.jpg"
+---
+
+<Master title={title} landing={true} headerImg={headerImg}>
+    <Header webinar={webinar} isLive={isLive} />
+    <section class="webinar">
+        {(isLive)
+            ? <Form webinar={webinar} source={source} client:only="react" />
+            : <NoAccess webinar={isLive} />
+        }
+    </section>
+</Master>

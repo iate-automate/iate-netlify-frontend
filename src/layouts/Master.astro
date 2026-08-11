@@ -1,0 +1,51 @@
+---
+import '../styles/site.css'
+import settings from '../settings'
+import { SEO } from 'astro-seo'
+import Header from './Header.astro'
+import Footer from './Footer.astro'
+import Scripts from '../components/elements/Scripts.astro'
+
+const { title, landing, headerImg } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<SEO
+			title={settings.siteTitle + " — " + title}
+			description={settings.siteDescription}
+			openGraph={{
+				basic: {
+                    title: settings.siteTitle,
+                    type: "A type.",
+				}
+			}}
+		/>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={settings.siteDescription} />
+        <meta name="author" content={settings.siteTitle} />
+        
+		<!-- Google Fonts -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+
+		<!-- Font Awesome -->
+		<script src="https://kit.fontawesome.com/c2ce1c4ebf.js" crossorigin="anonymous"></script>
+
+		<!-- Third Party Scripts -->
+		<Scripts />
+
+		<title>{ title } — { settings.siteTitle }</title>
+	</head>
+	<body>
+		<Header landing={landing} headerImg={headerImg} />
+		<main>
+            <slot />
+        </main>
+		<Footer landing={landing} />
+	</body>
+</html>

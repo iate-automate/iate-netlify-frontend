@@ -1,0 +1,32 @@
+---
+import Master from "../../../layouts/Master.astro"
+import Player from "../../../components/webinar/Player.astro"
+import NoAccess from "../../../components/webinar/NoAccess.astro"
+import { fetchWebinarSession } from "../../../hooks/api"
+
+const { slug } = Astro.params
+const webinar = await fetchWebinarSession(slug)
+
+const title = webinar ? webinar["Title"] : "No Active Session"
+const headerImg = webinar ? webinar["Image URL"] : "/images/iate-header-bg.jpg"
+const access = webinar ? (webinar["Days Remaining"] > 0) && (webinar["Live"][0]) : false
+---
+
+<Master title={`Webinar - ${title}`} landing={true} headerImg={headerImg}>
+    <section class="webinar">
+        {(access)
+            ? <Player webinar={webinar} />
+            : <NoAccess webinar={webinar} />
+        }
+    </section>
+</Master>
+
+<style>
+
+    .webinar {
+        align-items: center;
+        justify-content: center;
+        gap: var(--margin-medium);
+    }
+
+</style>

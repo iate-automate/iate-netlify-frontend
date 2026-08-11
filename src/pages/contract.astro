@@ -1,0 +1,44 @@
+---
+import Master from "../layouts/Master.astro"
+import Details from "../components/contract/ContractDetails.astro"
+import Copy from "../components/contract/ContractCopy.astro"
+import Submit from "../components/contract/ContractSubmit"
+import { fetchEnrolment } from "../hooks/api"
+
+// Get URL Params
+const params = new URLSearchParams(Astro.request.url.split('?')[1])
+const q = Object.fromEntries(
+  ['studentname', 'address', 'phone', 'email', 'date', 'id'].map(param => [param, params.get(param)])
+)
+
+// Check current signed status server-side so the confirmation persists across visits/refreshes
+const enrolment = q.id ? await fetchEnrolment(q.id) : null
+const alreadySigned = enrolment?.Contract === true
+
+---
+
+<Master title="Contract">
+	<section class="contract">
+        <div>
+            <h1>IATE Training Contract</h1>   
+            <Details
+                name={q.studentname}
+                address={q.address}
+                phone={q.phone}
+                email={q.email}
+            />
+        </div>
+        <Copy />
+        <Submit id={q.id} alreadySigned={alreadySigned} client:only="react" />
+	</section>
+</Master>
+
+<style>
+
+    .contract {
+        display: grid;
+        gap: var(--margin-large);
+        position: relative;
+    }
+
+</style>

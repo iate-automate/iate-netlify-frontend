@@ -1,0 +1,14 @@
+---
+import settings from "../../settings"
+
+const { webinar } = Astro.props
+const title = webinar ?  "Access Expired" : "Webinar Offline"
+const copy = webinar ? "Sorry but it looks like your webinar link has expired." : "It looks like this webinar is not available at the moment."
+
+---
+
+<div class="block">
+    <h1>{title}</h1>
+    <p>{copy}</p>
+    <p>If you feel you should be able to access this content and need to report an issue please <a href={settings.supportUrl} target="blank">contact us</a>.</p>
+</div>

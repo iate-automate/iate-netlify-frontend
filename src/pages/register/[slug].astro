@@ -1,0 +1,28 @@
+---
+import {fetchScheduledDays} from '../../hooks/api'
+import {sortByKey} from '../../hooks/utils'
+
+import Master from "../../layouts/Master.astro"
+import RegisterForm from "../../components/register/RegisterForm"
+
+const {slug} = Astro.params
+const {searchParams} = new URL(Astro.request.url)
+const dayNo = searchParams.get('day');
+const days = await fetchScheduledDays(slug)
+const sortedDays = sortByKey(days, 'Day number')
+
+---
+
+<Master title="Register">
+
+	<section class="register">
+		{(sortedDays.length > 0 && sortedDays.length >= parseInt(dayNo)) ?
+			<h1>{sortedDays[0]["Feed Course"]}</h1>
+			<RegisterForm days={sortedDays} dayNo={dayNo} client:only="react"/>
+			:
+			<h1>Oh dear, oh dear...</h1>
+			<p>Couldn't find that day. Is the Cohort ID and Day number in the URL correct?</p>
+		}
+	</section>
+	
+</Master>

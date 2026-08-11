@@ -1,0 +1,29 @@
+{
+  "name": "iate",
+  "type": "module",
+  "version": "1.2.6",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro build",
+    "deploy": "netlify deploy",
+    "stage": "netlify deploy --build",
+    "prod": "netlify deploy --prod --build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^7.0.4",
+    "@astrojs/react": "^5.0.1",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^6.0.8",
+    "astro-seo": "^0.8.4",
+    "axios": "^1.7.9",
+    "isomorphic-dompurify": "^2.22.0",
+    "marked": "^15.0.7",
+    "netlify-cli": "^19.1.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
