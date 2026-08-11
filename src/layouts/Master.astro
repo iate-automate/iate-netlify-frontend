@@ -15,12 +15,6 @@ const { title, landing, headerImg } = Astro.props
 		<SEO
 			title={settings.siteTitle + " — " + title}
 			description={settings.siteDescription}
-			openGraph={{
-				basic: {
-                    title: settings.siteTitle,
-                    type: "A type.",
-				}
-			}}
 		/>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
