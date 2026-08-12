@@ -64,7 +64,7 @@ export default function Form({webinar, source}) {
         console.log('Form submitted:', data)
 
         try {
-            const response = await fetch('https://api-62jcrbgdlq-uc.a.run.app/webinar-register', {
+            const response = await fetch('https://api-luzpkfdqnq-uc.a.run.app/webinar-register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),

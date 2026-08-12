@@ -34,7 +34,7 @@ export async function fetchScheduledDays(id) {
 
 export async function submitRegister(register) {
 
-    const api = "https://api-62jcrbgdlq-uc.a.run.app/registers";
+    const api = "https://api-luzpkfdqnq-uc.a.run.app/registers";
   
     try {
         const response = await axios.post(api, { registers: register }, {
@@ -51,7 +51,7 @@ export async function submitRegister(register) {
 
 export async function submitContract(id) {
 
-    const api = "https://api-62jcrbgdlq-uc.a.run.app/contract";
+    const api = "https://api-luzpkfdqnq-uc.a.run.app/contract";
 
     try {
         const response = await axios.post(api, { id }, {
