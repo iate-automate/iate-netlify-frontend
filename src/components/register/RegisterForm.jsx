@@ -122,7 +122,7 @@ export default function Checklist({days, dayNo}) {
             absent: absent
         }
 
-        const res = await submitRegister(JSON.stringify(register))
+        const res = await submitRegister(register)
         console.log(register)
         console.log(res)
         setFeedback(res.msg || res.error)
